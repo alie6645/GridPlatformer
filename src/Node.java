@@ -16,14 +16,15 @@ public class Node implements Drawable{
     }
 
     public void update(){
-        int xAdjust;
-        int yAdjust;
-        if (x>0){
+        int xAdjust = 0;
+        int yAdjust = 0;
+        if (xChange>0) {
             xAdjust = -1;
-        } else {
+        }
+        if (xChange<0){
             xAdjust = 1;
         }
-        if (y>0){
+        if (yChange>0){
             yAdjust = -1;
         } else {
             yAdjust = 1;
@@ -32,7 +33,7 @@ public class Node implements Drawable{
         boolean yCross = grid.translate(y)!=grid.translate(y+yChange);
         if(yCross&&!xCross){
             if (grid.getCell(grid.translate(x),grid.translate(y+yChange)).ceiling){
-                setPosition(x+xChange+xAdjust, grid.getEdge(grid.translate(y+yChange)+yAdjust));
+                setPosition(x+xChange+xAdjust, grid.getEdge(grid.translate(y+yChange))+yAdjust);
                 yChange = 0;
             }
         } else if (xCross&&!yCross){
